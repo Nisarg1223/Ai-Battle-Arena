@@ -2,19 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 // Predefined model list matching the sidebar
+// Predefined model list matching the sidebar with custom SVG logos
 const MODELS_LIST = [
-  { id: 'gemini', name: 'Gemini 3.5 Flash', icon: '⚡' },
-  { id: 'mistral', name: 'Mistral Medium', icon: '🌀' },
-  { id: 'cohere', name: 'Cohere Command', icon: '🔗' },
-  { id: 'openai', name: 'OpenAI GPT-4o', icon: '🧠' },
-  { id: 'claude', name: 'Claude 3.5 Sonnet', icon: '🎨' },
-  { id: 'deepseek', name: 'DeepSeek V3', icon: '🔍' },
+  { id: 'claude', name: 'Claude 3.5 Sonnet', icon: '/logos/claude.png' },
+  { id: 'openai', name: 'OpenAI GPT-4o', icon: '/logos/GPT_2.png' },
+  { id: 'gemini', name: 'Gemini 3.5 Flash', icon: '/logos/gemini.png' },
+  { id: 'deepseek', name: 'DeepSeek V3', icon: '/logos/deepseek.png' },
+  { id: 'mistral', name: 'Mistral Medium', icon: '/logos/mistral.png' },
+  { id: 'cohere', name: 'Cohere Command', icon: '/logos/cohere.png' },
+  { id: 'groq', name: 'Groq Llama 3.3', icon: '/logos/groq.svg' },
 ];
 
 const JUDGES_LIST = [
-  { id: 'gemini-judge', name: 'Gemini Flash Judge', icon: '⚖️' },
-  { id: 'claude-judge', name: 'Claude Sonnet Judge', icon: '🛡️' },
-  { id: 'gpt-judge', name: 'GPT-4o Judge', icon: '🎓' },
+  { id: 'gemini-judge', name: 'Gemini Flash Judge', icon: '/logos/gemini.png' },
+  { id: 'claude-judge', name: 'Claude Sonnet Judge', icon: '/logos/claude.png' },
+  { id: 'gpt-judge', name: 'GPT-4o Judge', icon: '/logos/GPT_2.png' },
 ];
 
 const App = () => {
@@ -486,8 +488,8 @@ const App = () => {
                 draggable
                 onDragStart={(e) => handleSidebarDragStart(e, model, 'model')}
               >
-                <div className="drag-item-left">
-                  <span className="drag-item-icon">{model.icon}</span>
+                <div className="drag-item-left" style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src={model.icon} alt={model.name} style={{ width: 18, height: 18, marginRight: 8, objectFit: 'contain' }} />
                   <span>{model.name}</span>
                 </div>
                 <span className="drag-item-plus" onClick={() => handleSidebarAdd(model.id, 'model')}>+</span>
@@ -504,8 +506,8 @@ const App = () => {
                 draggable
                 onDragStart={(e) => handleSidebarDragStart(e, judge, 'judge')}
               >
-                <div className="drag-item-left">
-                  <span className="drag-item-icon">{judge.icon}</span>
+                <div className="drag-item-left" style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src={judge.icon} alt={judge.name} style={{ width: 18, height: 18, marginRight: 8, objectFit: 'contain' }} />
                   <span>{judge.name}</span>
                 </div>
                 <span className="drag-item-plus" onClick={() => handleSidebarAdd(judge.id, 'judge')}>+</span>
@@ -623,8 +625,18 @@ const App = () => {
                 <div className="node-header">
                   <div className="node-header-left">
                     <span className="node-tag tag-model1">MODEL 1</span>
-                    <span className="node-name">
-                      {MODELS_LIST.find(m => m.id === model1)?.name || model1}
+                    <span className="node-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      {(() => {
+                        const m = MODELS_LIST.find(mInfo => mInfo.id === model1);
+                        return m ? (
+                          <>
+                            <img src={m.icon} alt={m.name} style={{ width: 14, height: 14, objectFit: 'contain' }} />
+                            <span>{m.name}</span>
+                          </>
+                        ) : (
+                          model1
+                        );
+                      })()}
                     </span>
                   </div>
                   <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -678,8 +690,18 @@ const App = () => {
                 <div className="node-header">
                   <div className="node-header-left">
                     <span className="node-tag tag-model2">MODEL 2</span>
-                    <span className="node-name">
-                      {MODELS_LIST.find(m => m.id === model2)?.name || model2}
+                    <span className="node-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      {(() => {
+                        const m = MODELS_LIST.find(mInfo => mInfo.id === model2);
+                        return m ? (
+                          <>
+                            <img src={m.icon} alt={m.name} style={{ width: 14, height: 14, objectFit: 'contain' }} />
+                            <span>{m.name}</span>
+                          </>
+                        ) : (
+                          model2
+                        );
+                      })()}
                     </span>
                   </div>
                   <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -733,8 +755,18 @@ const App = () => {
                 <div className="node-header">
                   <div className="node-header-left">
                     <span className="node-tag tag-judge">JUDGE</span>
-                    <span className="node-name">
-                      {JUDGES_LIST.find(j => j.id === judgeModel)?.name || judgeModel}
+                    <span className="node-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      {(() => {
+                        const j = JUDGES_LIST.find(jInfo => jInfo.id === judgeModel);
+                        return j ? (
+                          <>
+                            <img src={j.icon} alt={j.name} style={{ width: 14, height: 14, objectFit: 'contain' }} />
+                            <span>{j.name}</span>
+                          </>
+                        ) : (
+                          judgeModel
+                        );
+                      })()}
                     </span>
                   </div>
                   <button className="node-action-btn" onClick={(e) => {
