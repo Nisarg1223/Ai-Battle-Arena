@@ -9,6 +9,23 @@ const Home = ({ setView: propSetView }) => {
     else navigate(`/${viewName}`);
   });
   const [isLightMode, setIsLightMode] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+  const [splashFade, setSplashFade] = useState(false);
+
+  useEffect(() => {
+    const fadeTimer = setTimeout(() => {
+      setSplashFade(true);
+    }, 2200);
+
+    const removeTimer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2700);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
   const [indianTime, setIndianTime] = useState('');
   const [hoveredWord, setHoveredWord] = useState(null);
   const [trailLogos, setTrailLogos] = useState([]);
@@ -69,7 +86,19 @@ const Home = ({ setView: propSetView }) => {
   }, []);
 
   return (
-    <div className={`namma-container ${isLightMode ? 'namma-light' : 'namma-dark'}`}>
+    <>
+      {showSplash && (
+        <div className={`splash-screen ${splashFade ? 'fade-out' : ''}`}>
+          <div className="splash-content">
+            <img src="/logo.png" alt="AI Battle Arena Logo" className="splash-logo" />
+            <h1 className="splash-title">AI BATTLE ARENA</h1>
+            <div className="splash-loader-bar">
+              <div className="splash-loader-progress"></div>
+            </div>
+          </div>
+        </div>
+      )}
+      <div className={`namma-container ${isLightMode ? 'namma-light' : 'namma-dark'}`}>
       
       {/* Header */}
       <header className="namma-header">
@@ -420,6 +449,7 @@ const Home = ({ setView: propSetView }) => {
       </div>
 
     </div>
+    </>
   );
 };
 

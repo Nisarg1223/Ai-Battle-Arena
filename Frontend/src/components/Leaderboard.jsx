@@ -71,9 +71,7 @@ const Leaderboard = ({ setView: propSetView, MODELS_LIST }) => {
       <aside className="icon-sidebar">
         <div className="sidebar-top-icons">
           <div className="logo-container" onClick={() => setView('landing')} style={{ cursor: 'pointer' }} title="Go to Home">
-            <svg viewBox="0 0 32 32" className="logo-svg">
-              <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm0 4c5.523 0 10 4.477 10 10 0 1.63-.39 3.17-1.08 4.54l-1.84-1.84c.59-.83.92-1.82.92-2.7 0-2.76-2.24-5-5-5-.88 0-1.87.33-2.7.92l-1.84-1.84C12.83 6.39 14.37 6 16 6zm-5.46 3.46l1.84 1.84C11.55 12.13 11 13.5 11 15c0 2.76 2.24 5 5 5 1.5 0 2.87-.55 3.7-1.38l1.84 1.84C20.17 21.83 18.2 22 16 22c-3.87 0-7-3.13-7-7 0-2.2.17-4.17 1.54-5.54zm-2.08 6.08L6.62 17.38c-.39-.83-.62-1.74-.62-2.7 0-5.52 4.48-10 10-10 .96 0 1.87.23 2.7.62l-1.84 1.84c-.28-.15-.57-.28-.86-.38-4.42 0-8 3.58-8 8z" />
-            </svg>
+            <img src="/logo.png" alt="AI Battle Arena Logo" className="logo-img" />
           </div>
           <div className="sidebar-icon" onClick={() => setView('arena')} style={{ cursor: 'pointer' }} title="Arena Workspace">
             <span>🎛️</span>
