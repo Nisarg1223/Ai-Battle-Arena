@@ -6,10 +6,10 @@ const run = async () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        problem: "which city is best to live",
-        model_1: "deepseek",
-        model_2: "cohere",
-        judge_model: "gemini"
+        problem: "top 5 richest person in the world",
+        model_1: "groq",
+        model_2: "openai",
+        judge_model: "gpt-judge"
       })
     });
     console.log('Status:', res.status);

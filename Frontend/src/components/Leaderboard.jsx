@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Leaderboard.css';
 
-const Leaderboard = ({ setView, MODELS_LIST }) => {
+const Leaderboard = ({ setView: propSetView, MODELS_LIST }) => {
+  const navigate = useNavigate();
+  const setView = propSetView || ((viewName) => {
+    if (viewName === 'landing') navigate('/home');
+    else if (viewName === 'arena') navigate('/battel');
+    else navigate(`/${viewName}`);
+  });
   const [countdown, setCountdown] = useState({ days: 12, hours: 6, minutes: 42, seconds: 59 });
   const [globalStandings, setGlobalStandings] = useState([]);
   const [totalBattles, setTotalBattles] = useState(0);
@@ -77,12 +84,6 @@ const Leaderboard = ({ setView, MODELS_LIST }) => {
           <div className="sidebar-icon" onClick={() => setView('prompts')} style={{ cursor: 'pointer' }} title="Prompts">
             <span>💬</span>
           </div>
-          <div className="sidebar-icon">
-            <span>⚙️</span>
-          </div>
-        </div>
-        <div className="sidebar-bottom-icons">
-          <div className="profile-avatar">N</div>
         </div>
       </aside>
 
@@ -93,18 +94,6 @@ const Leaderboard = ({ setView, MODELS_LIST }) => {
           <div className="header-left-title">
             <span className="back-arrow-btn" onClick={() => setView('landing')} title="Go back to Home">‹</span>
             <h1>Leaderboard</h1>
-          </div>
-          <div className="header-right-meta">
-            <div className="search-box-wrap">
-              <span className="search-icon">🔍</span>
-              <input type="text" placeholder="Search models, rankings..." className="search-input" />
-            </div>
-            <div className="notification-bell">🔔</div>
-            <div className="profile-badge">
-              <div className="profile-avatar-small">N</div>
-              <span className="profile-name">Nisarg</span>
-              <span className="profile-dropdown-arrow">▼</span>
-            </div>
           </div>
         </header>
 

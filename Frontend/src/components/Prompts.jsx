@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Prompts.css';
 
-const Prompts = ({ setView }) => {
+const Prompts = ({ setView: propSetView }) => {
+  const navigate = useNavigate();
+  const setView = propSetView || ((viewName) => {
+    if (viewName === 'landing') navigate('/home');
+    else if (viewName === 'arena') navigate('/battel');
+    else navigate(`/${viewName}`);
+  });
   const [activePromptIndex, setActivePromptIndex] = useState(null);
   const [prompts, setPrompts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -72,12 +79,6 @@ const Prompts = ({ setView }) => {
           <div className="sidebar-icon active" onClick={() => setView('prompts')} style={{ cursor: 'pointer' }} title="Prompts">
             <span>💬</span>
           </div>
-          <div className="sidebar-icon">
-            <span>⚙️</span>
-          </div>
-        </div>
-        <div className="sidebar-bottom-icons">
-          <div className="profile-avatar">N</div>
         </div>
       </aside>
 
@@ -88,18 +89,6 @@ const Prompts = ({ setView }) => {
           <div className="header-left-title">
             <span className="back-arrow-btn" onClick={() => setView('landing')} title="Go back to Home">‹</span>
             <h1>Prompts</h1>
-          </div>
-          <div className="header-right-meta">
-            <div className="search-box-wrap">
-              <span className="search-icon">🔍</span>
-              <input type="text" placeholder="Search prompts..." className="search-input" />
-            </div>
-            <div className="notification-bell">🔔</div>
-            <div className="profile-badge">
-              <div className="profile-avatar-small">N</div>
-              <span className="profile-name">Nisarg</span>
-              <span className="profile-dropdown-arrow">▼</span>
-            </div>
           </div>
         </header>
 

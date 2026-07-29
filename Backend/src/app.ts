@@ -140,7 +140,7 @@ app.get('/api/leaderboard', async (req, res) => {
 
         // Map stats to standings format
         const standings = Object.keys(modelMeta).map(key => {
-            const meta = modelMeta[key];
+            const meta = modelMeta[key]!;
             const stat = stats[key] || { wins: 0, matches: 0, elo: 1000, victories: 0, totalScore: 0 };
             const successRateVal = stat.matches > 0 ? (stat.wins / stat.matches) * 100 : 0;
             const avgScoreVal = stat.matches > 0 ? (stat.totalScore / stat.matches).toFixed(1) : '0.0';
@@ -186,7 +186,7 @@ app.get('/api/prompts', async (req, res) => {
         const limit = parseInt(req.query.limit as string) || 5;
         const skip = (page - 1) * limit;
 
-        const battles = await Battle.find({});
+        const battles: any[] = await Battle.find({});
 
         // Sort: question_score >= 8 first, then others. Within each group, sort by score descending.
         const sortedBattles = [...battles].sort((a, b) => {

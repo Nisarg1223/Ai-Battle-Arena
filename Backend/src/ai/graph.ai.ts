@@ -71,8 +71,8 @@ const solutionNode: GraphNode<typeof state> = async (state) => {
   ]);
 
   return {
-    solution_1: res1.text || "",
-    solution_2: res2.text || "",
+    solution_1: (typeof res1.content === 'string' ? res1.content : '') || "",
+    solution_2: (typeof res2.content === 'string' ? res2.content : '') || "",
   };
 };
 

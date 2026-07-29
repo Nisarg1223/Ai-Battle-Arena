@@ -21,7 +21,7 @@ export const cohereModel = new ChatCohere({
 });
 
 export const groqModel = new ChatGroq({
-    model: "llama-3.3-70b-specdec",
+    model: "llama-3.3-70b-versatile",
     apiKey: config.GROQ_API_KEY,
 });
 

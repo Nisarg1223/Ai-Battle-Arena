@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Home = ({ setView }) => {
+const Home = ({ setView: propSetView }) => {
+  const navigate = useNavigate();
+  const setView = propSetView || ((viewName) => {
+    if (viewName === 'landing') navigate('/home');
+    else if (viewName === 'arena') navigate('/battel');
+    else navigate(`/${viewName}`);
+  });
   const [isLightMode, setIsLightMode] = useState(false);
   const [indianTime, setIndianTime] = useState('');
   const [hoveredWord, setHoveredWord] = useState(null);
   const [trailLogos, setTrailLogos] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const lastPos = useRef({ x: 0, y: 0 });
   const logoIndex = useRef(0);
   const heroRef = useRef(null);
@@ -66,11 +74,20 @@ const Home = ({ setView }) => {
       {/* Header */}
       <header className="namma-header">
         <div className="namma-header-left">
+          <button 
+            className={`namma-hamburger-btn ${isMenuOpen ? 'active' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Navigation"
+          >
+            <span className="hamburger-bar"></span>
+            <span className="hamburger-bar"></span>
+            <span className="hamburger-bar"></span>
+          </button>
           <a href="#" className="namma-logo" onClick={(e) => { e.preventDefault(); setView('landing'); }}>
             AI BATTLE ARENA
           </a>
         </div>
-        <div className="namma-header-center">
+        <div className="namma-header-center desktop-nav">
           <button 
             className="namma-header-btn" 
             onClick={() => setIsLightMode(!isLightMode)}
@@ -90,11 +107,38 @@ const Home = ({ setView }) => {
             CAPABILITIES
           </a>
         </div>
-        <div className="namma-header-right">
+        <div className="namma-header-right desktop-nav">
           <button className="namma-talk-btn" onClick={() => setView('arena')}>
             LET'S FIGHT!
           </button>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMenuOpen && (
+          <div className="namma-mobile-menu">
+            <button 
+              className="namma-mobile-menu-btn" 
+              onClick={() => { setIsLightMode(!isLightMode); setIsMenuOpen(false); }}
+            >
+              {isLightMode ? 'DARK MODE' : 'LIGHT MODE'}
+            </button>
+            <a href="#battles" className="namma-mobile-menu-btn" onClick={() => setIsMenuOpen(false)}>
+              BATTLES
+            </a>
+            <a href="#" className="namma-mobile-menu-btn" onClick={(e) => { e.preventDefault(); setView('leaderboard'); setIsMenuOpen(false); }}>
+              LEADERBOARD
+            </a>
+            <a href="#" className="namma-mobile-menu-btn" onClick={(e) => { e.preventDefault(); setView('prompts'); setIsMenuOpen(false); }}>
+              PROMPTS
+            </a>
+            <a href="#capabilities" className="namma-mobile-menu-btn" onClick={() => setIsMenuOpen(false)}>
+              CAPABILITIES
+            </a>
+            <button className="namma-mobile-menu-talk-btn" onClick={() => { setView('arena'); setIsMenuOpen(false); }}>
+              LET'S FIGHT!
+            </button>
+          </div>
+        )}
       </header>
 
       {/* Scrollable Content Wrapper */}
