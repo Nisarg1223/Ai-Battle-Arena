@@ -90,7 +90,7 @@ const Home = ({ setView: propSetView }) => {
       {showSplash && (
         <div className={`splash-screen ${splashFade ? 'fade-out' : ''}`}>
           <div className="splash-content">
-            <img src="/logo.png" alt="AI Battle Arena Logo" className="splash-logo" />
+            <img src="/logos/loading_logo.png" alt="AI Battle Arena Logo" className="splash-logo" />
             <h1 className="splash-title">AI BATTLE ARENA</h1>
             <div className="splash-loader-bar">
               <div className="splash-loader-progress"></div>

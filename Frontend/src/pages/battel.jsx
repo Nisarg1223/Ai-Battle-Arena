@@ -669,7 +669,7 @@ const Battel = () => {
           </div>
           <div className="topbar-actions">
             <button className={`btn-sidebar-toggle right-toggle ${isRightPanelOpen ? 'active' : ''}`} onClick={() => setIsRightPanelOpen(!isRightPanelOpen)}>
-              ⚙️ Controller ☰
+              ☰ Prompt 
             </button>
             <button className="btn-primary-sparkle" onClick={runBattle} disabled={isLoading}>
               ✨ AI Generate
