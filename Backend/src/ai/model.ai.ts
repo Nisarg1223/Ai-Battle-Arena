@@ -11,22 +11,22 @@ export const geminiModel = new ChatGoogle({
 });
 
 export const mistralModel = new ChatMistralAI({
-    model:"mistral-medium-latest",
+    model:"mistral-large-latest",
     apiKey: config.MISTRAL_API_KEY,
 });
 
 export const cohereModel = new ChatCohere({
-    model:'command-a-03-2025',
+    model: 'command-r-08-2024',
     apiKey: config.COHERE_API_KEY,
 });
 
 export const groqModel = new ChatGroq({
-    model: "llama-3.3-70b-versatile",
+    model: "llama-3.3-70b-specdec",
     apiKey: config.GROQ_API_KEY,
 });
 
 export const deepseekModel = new ChatOpenAI({
-    modelName: "deepseek/deepseek-chat",
+    model: "deepseek/deepseek-chat",
     apiKey: config.OPENROUTER_API_KEY,
     configuration: {
         baseURL: "https://openrouter.ai/api/v1",
@@ -34,7 +34,7 @@ export const deepseekModel = new ChatOpenAI({
 });
 
 export const claudeModel = new ChatOpenAI({
-    modelName: "anthropic/claude-3-haiku",
+    model: "anthropic/claude-3-haiku",
     apiKey: config.OPENROUTER_API_KEY,
     configuration: {
         baseURL: "https://openrouter.ai/api/v1",
@@ -42,11 +42,12 @@ export const claudeModel = new ChatOpenAI({
 });
 
 export const gptModel = new ChatOpenAI({
-    modelName: "gpt-4o-mini",
+    model: "gpt-4o",
     apiKey: config.GITHUB_API_KEY,
     configuration: {
         baseURL: "https://models.inference.ai.azure.com",
     },
 });
+
 
 

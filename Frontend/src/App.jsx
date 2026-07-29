@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 import Home from './components/Home';
 import Leaderboard from './components/Leaderboard';
+import Prompts from './components/Prompts';
 
 // Predefined model list matching the sidebar
 // Predefined model list matching the sidebar with custom SVG logos
@@ -468,6 +469,14 @@ const App = () => {
     );
   }
 
+  if (view === 'prompts') {
+    return (
+      <Prompts 
+        setView={setView}
+      />
+    );
+  }
+
   return (
     <div className="app-container" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
       
@@ -485,8 +494,8 @@ const App = () => {
           <div className="sidebar-icon" onClick={() => setView('leaderboard')} style={{ cursor: 'pointer' }} title="Leaderboard">
             <span>📊</span>
           </div>
-          <div className="sidebar-icon">
-            <span>🗺️</span>
+          <div className="sidebar-icon" onClick={() => setView('prompts')} style={{ cursor: 'pointer' }} title="Prompts">
+            <span>💬</span>
           </div>
           <div className="sidebar-icon">
             <span>⚙️</span>
@@ -812,6 +821,7 @@ const App = () => {
                       <div style={{margin: '8px 0', padding: '6px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '4px'}}>
                         <p><strong>Model 1 Score:</strong> {battleResults.judge.solution_1_score}/10</p>
                         <p><strong>Model 2 Score:</strong> {battleResults.judge.solution_2_score}/10</p>
+                        <p><strong>Question Score:</strong> {battleResults.judge.question_score || 0}/10</p>
                       </div>
                       <h4>Feedback on Model 1</h4>
                       <p style={{fontSize: '11px', fontStyle: 'italic', marginBottom: '8px'}}>{battleResults.judge.solution_1_feedback}</p>
@@ -828,7 +838,7 @@ const App = () => {
                   <div style={{ padding: '0 16px 12px 16px' }}>
                     <button className="btn-see-response" onClick={() => setModalData({
                       title: `${JUDGES_LIST.find(j => j.id === judgeModel)?.name || judgeModel} Evaluation`,
-                      content: `### **Evaluation Summary**\n\n- **Model 1 Score:** ${battleResults.judge.solution_1_score}/10\n- **Model 2 Score:** ${battleResults.judge.solution_2_score}/10\n\n---\n\n### **Model 1 Feedback**\n${battleResults.judge.solution_1_feedback}\n\n---\n\n### **Model 2 Feedback**\n${battleResults.judge.solution_2_feedback}`
+                      content: `### **Evaluation Summary**\n\n- **Model 1 Score:** ${battleResults.judge.solution_1_score}/10\n- **Model 2 Score:** ${battleResults.judge.solution_2_score}/10\n- **Question Score:** ${battleResults.judge.question_score || 0}/10\n\n---\n\n### **Model 1 Feedback**\n${battleResults.judge.solution_1_feedback}\n\n---\n\n### **Model 2 Feedback**\n${battleResults.judge.solution_2_feedback}`
                     })}>⚖️ See Evaluation Details</button>
                   </div>
                 )}

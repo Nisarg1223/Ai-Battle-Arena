@@ -6,10 +6,10 @@ const run = async () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        problem: "write the code for C++",
-        model_1: "openai",
-        model_2: "deepseek",
-        judge_model: "gpt-judge"
+        problem: "which city is best to live",
+        model_1: "deepseek",
+        model_2: "cohere",
+        judge_model: "gemini"
       })
     });
     console.log('Status:', res.status);

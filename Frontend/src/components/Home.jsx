@@ -9,31 +9,6 @@ const Home = ({ setView }) => {
   const logoIndex = useRef(0);
   const heroRef = useRef(null);
 
-  const [activePromptIndex, setActivePromptIndex] = useState(null);
-
-  const promptsData = [
-    {
-      question: "What parameters can I customize for the models?",
-      answer: "Every parameter matters. In the Arena Workspace, you can adjust temperature, maximum tokens, frequency penalties, and custom system instructions for each LLM model individually."
-    },
-    {
-      question: "How does the automated LLM Judge work?",
-      answer: "Our automated judge utilizes advanced model evaluation frameworks. It runs secondary evaluations on completion metrics, logic checks, and semantic accuracy, generating detailed scoring cards."
-    },
-    {
-      question: "Do we need API keys or setup to run battles?",
-      answer: "No. The AI Battle Arena provides a pre-configured playground so you can compare outputs instantly without setting up API configurations or supplying custom tokens."
-    },
-    {
-      question: "Is raw latency and speed measured?",
-      answer: "Yes, we monitor latency, time-to-first-token (TTFT), and tokens-per-second (TPS) in real-time. Speed charts help you determine which provider is fastest for your stack."
-    },
-    {
-      question: "What kind of evaluation metrics can we expect?",
-      answer: "We support a range of qualitative and quantitative benchmarks, including schema conformance, context retention, instruction following, and reasoning trees."
-    }
-  ];
-
   const logoList = [
     '/logos/GPT_2.png',
     '/logos/claude.png',
@@ -108,7 +83,7 @@ const Home = ({ setView }) => {
           <a href="#" className="namma-header-btn" onClick={(e) => { e.preventDefault(); setView('leaderboard'); }}>
             LEADERBOARD
           </a>
-          <a href="#prompts" className="namma-header-btn">
+          <a href="#" className="namma-header-btn" onClick={(e) => { e.preventDefault(); setView('prompts'); }}>
             PROMPTS
           </a>
           <a href="#capabilities" className="namma-header-btn">
@@ -358,48 +333,9 @@ const Home = ({ setView }) => {
           </div>
         </section>
 
-        {/* Section 5: Prompts Accordion */}
-        <section id="prompts" className="namma-prompts-section">
-          <div className="prompts-capsule-wrapper">
-            <span className="prompts-capsule">04 • FAQS</span>
-          </div>
-          <h2 className="prompts-title">Common Questions</h2>
-
-          <div className="prompts-accordion-container">
-            {promptsData.map((item, index) => {
-              const isOpen = activePromptIndex === index;
-              return (
-                <div 
-                  key={index} 
-                  className={`prompt-accordion-item ${isOpen ? 'active' : ''}`}
-                  onClick={() => setActivePromptIndex(isOpen ? null : index)}
-                >
-                  <div className="prompt-item-header">
-                    <span className="prompt-num">{index + 1}</span>
-                    <span className="prompt-question">{item.question}</span>
-                    <div className="prompt-toggle-btn">
-                      <span>{isOpen ? '✕' : '＋'}</span>
-                    </div>
-                  </div>
-                  {isOpen && (
-                    <div className="prompt-item-body">
-                      <p>{item.answer}</p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="prompts-footer">
-            <span>Have any other questions?</span>
-            <a href="mailto:battle@arena.ai" className="prompts-contact-link">Contact Us →</a>
-          </div>
-        </section>
-
-        {/* Section 6: Call to Action */}
+        {/* Section 5: Call to Action */}
         <section className="namma-cta-section">
-          <span className="section-label">05 / BATTLEGROUND</span>
+          <span className="section-label">04 / BATTLEGROUND</span>
           <h2 className="cta-headline">Let's run a battle</h2>
           <p className="cta-paragraph">Draft your prompt, we'll run it! Ready to launch the arena?</p>
           <button className="cta-huge-btn" onClick={() => setView('arena')}>
