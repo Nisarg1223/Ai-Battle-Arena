@@ -96,7 +96,7 @@ const Prompts = ({ setView: propSetView }) => {
           <div className="prompts-capsule-wrapper">
             <span className="prompts-capsule">010 • FAQS</span>
           </div>
-          <h2 className="prompts-title-large">Common Questions</h2>
+          <h2 className="prompts-title-large">Top Questions</h2>
 
           <div className="prompts-accordion-container">
             {isLoading ? (
