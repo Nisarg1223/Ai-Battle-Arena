@@ -94,7 +94,7 @@ app.get('/api/leaderboard', async (req, res) => {
             claude: { name: 'Claude 3.5 Sonnet', provider: 'Anthropic', handle: '@anthropic', icon: '/logos/claude.png', id: '1587667' },
             openai: { name: 'OpenAI GPT-4o', provider: 'OpenAI', handle: '@openai', icon: '/logos/GPT_2.png', id: '1587634' },
             gemini: { name: 'Gemini 3.5 Flash', provider: 'Google', handle: '@google', icon: '/logos/gemini.png', id: '1587699' },
-            deepseek: { name: 'DeepSeek V3', provider: 'DeepSeek', handle: '@deepseek', icon: '/logos/deepseek.png', id: '1587712' },
+            deepseek: { name: 'DeepSeek R1', provider: 'DeepSeek', handle: '@deepseek', icon: '/logos/deepseek.png', id: '1587712' },
             mistral: { name: 'Mistral Medium', provider: 'Mistral', handle: '@mistral', icon: '/logos/mistral.png', id: '1587789' },
             cohere: { name: 'Cohere Command', provider: 'Cohere', handle: '@cohere', icon: '/logos/cohere.png', id: '1587823' },
             groq: { name: 'Groq Llama 3.3', provider: 'Groq', handle: '@groq', icon: '/logos/groq.svg', id: '1587901' },

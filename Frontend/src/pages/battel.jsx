@@ -7,7 +7,7 @@ const MODELS_LIST = [
   { id: 'claude', name: 'Claude 3.5 Sonnet', icon: '/logos/claude.png' },
   { id: 'openai', name: 'OpenAI GPT-4o', icon: '/logos/GPT_2.png' },
   { id: 'gemini', name: 'Gemini 3.5 Flash', icon: '/logos/gemini.png' },
-  { id: 'deepseek', name: 'DeepSeek V3', icon: '/logos/deepseek.png' },
+  { id: 'deepseek', name: 'DeepSeek R1', icon: '/logos/deepseek.png' },
   { id: 'mistral', name: 'Mistral Medium', icon: '/logos/mistral.png' },
   { id: 'cohere', name: 'Cohere Command', icon: '/logos/cohere.png' },
   { id: 'groq', name: 'Groq Llama 3.3', icon: '/logos/groq.svg' },

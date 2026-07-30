@@ -312,12 +312,12 @@ const Home = ({ setView: propSetView }) => {
                   
                   <rect x="260" y="100" width="80" height="40" rx="4" stroke="rgba(255,255,255,0.25)" fill="#1e1f22" strokeWidth="1.5" />
                   <text x="300" y="124" fill="rgba(255,255,255,0.6)" fontSize="9" textAnchor="middle" fontFamily="Space Mono">TEST</text>
-                  <text x="200" y="156" fill="rgba(255,255,255,0.3)" fontSize="8" textAnchor="middle" fontFamily="Space Mono">DEEPSEEK V3</text>
+                  <text x="200" y="156" fill="rgba(255,255,255,0.3)" fontSize="8" textAnchor="middle" fontFamily="Space Mono">DEEPSEEK R1</text>
                 </svg>
                 <span className="play-hint">LAUNCH ARENA</span>
               </div>
               <div className="project-meta">
-                <span className="project-name">DEEPSEEK V3 STRESS TEST</span>
+                <span className="project-name">DEEPSEEK R1 STRESS TEST</span>
                 <span className="project-desc">LIMIT TESTING A GIANT REASONER</span>
               </div>
             </div>
