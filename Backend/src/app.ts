@@ -7,7 +7,17 @@ app.use(express.json());
 
 // Enable CORS
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    const origin = req.headers.origin;
+    const allowedOrigins = [
+        'https://aibattlearena.netlify.app',
+        'http://localhost:5173',
+        'http://localhost:3000'
+    ];
+    if (origin && allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+        res.setHeader('Access-Control-Allow-Origin', 'https://aibattlearena.netlify.app');
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
