@@ -17,7 +17,7 @@ const Leaderboard = ({ setView: propSetView, MODELS_LIST }) => {
   // Fetch dynamic leaderboard data on mount
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://localhost:3000/api/leaderboard')
+    fetch('https://ai-battle-arena-mr6l.onrender.com/api/leaderboard')
       .then(res => res.json())
       .then(data => {
         if (data.standings && data.standings.length > 0) {

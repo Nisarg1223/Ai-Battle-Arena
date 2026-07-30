@@ -40,7 +40,7 @@ const Prompts = ({ setView: propSetView }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:3000/api/prompts?page=${currentPage}&limit=5`)
+    fetch(`https://ai-battle-arena-mr6l.onrender.com/api/prompts?page=${currentPage}&limit=5`)
       .then(res => res.json())
       .then(data => {
         if (data.prompts && data.prompts.length > 0) {

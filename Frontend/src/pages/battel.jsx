@@ -425,7 +425,7 @@ const Battel = () => {
     setSelectedNodeId('judge'); // Focus on Judge to see results
 
     try {
-      const response = await fetch('http://localhost:3000/api/battle', {
+      const response = await fetch('https://ai-battle-arena-mr6l.onrender.com/api/battle', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
