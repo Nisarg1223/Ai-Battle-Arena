@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/Server.js",
     "dev": "tsx watch Server.ts"
   },
   "keywords": [],

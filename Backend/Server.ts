@@ -1,5 +1,5 @@
 import dns from 'dns';
-import app from "./src/app.ts";
+import app from "./src/app.js";
 import connectedtoDB from "./src/config/db.js";
 
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
