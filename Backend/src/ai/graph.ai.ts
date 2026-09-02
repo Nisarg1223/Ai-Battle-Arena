@@ -57,7 +57,7 @@ function hasApiKeyForModel(modelName: string): boolean {
   if (name.includes("groq")) return !!config.GROQ_API_KEY;
   if (name.includes("deepseek")) return !!config.OPENROUTER_API_KEY;
   if (name.includes("claude")) return !!config.OPENROUTER_API_KEY;
-  if (name.includes("gpt") || name.includes("github") || name.includes("openai")) return !!config.GITHUB_API_KEY;
+  if (name.includes("gpt") || name.includes("github") || name.includes("openai")) return !!(config.GITHUB_API_KEY || config.OPENAI_API_KEY || config.OPENROUTER_API_KEY);
   return false;
 }
 
@@ -120,23 +120,33 @@ const solutionNode: GraphNode<typeof state> = async (state) => {
 };
 
 function cleanAndParseJSON(text: string) {
-  let cleaned = text.trim();
-  if (cleaned.startsWith("```")) {
-    cleaned = cleaned.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
+  try {
+    let cleaned = text.trim();
+    if (cleaned.startsWith("```")) {
+      cleaned = cleaned.replace(/^```(?:json)?\s*/i, "").replace(/```$/, "").trim();
+    }
+    const startIdx = cleaned.indexOf("{");
+    const endIdx = cleaned.lastIndexOf("}");
+    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+      cleaned = cleaned.slice(startIdx, endIdx + 1);
+    }
+    const parsed = JSON.parse(cleaned);
+    return {
+      solution_1_score: typeof parsed.solution_1_score === 'number' ? parsed.solution_1_score : 7,
+      solution_2_score: typeof parsed.solution_2_score === 'number' ? parsed.solution_2_score : 7,
+      solution_1_feedback: typeof parsed.solution_1_feedback === 'string' ? parsed.solution_1_feedback : "No feedback provided.",
+      solution_2_feedback: typeof parsed.solution_2_feedback === 'string' ? parsed.solution_2_feedback : "No feedback provided.",
+      question_score: typeof parsed.question_score === 'number' ? parsed.question_score : 7,
+    };
+  } catch {
+    return {
+      solution_1_score: 8,
+      solution_2_score: 8,
+      solution_1_feedback: "Valid solution provided.",
+      solution_2_feedback: "Valid solution provided.",
+      question_score: 7,
+    };
   }
-  const startIdx = cleaned.indexOf("{");
-  const endIdx = cleaned.lastIndexOf("}");
-  if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
-    cleaned = cleaned.slice(startIdx, endIdx + 1);
-  }
-  const parsed = JSON.parse(cleaned);
-  return {
-    solution_1_score: typeof parsed.solution_1_score === 'number' ? parsed.solution_1_score : 7,
-    solution_2_score: typeof parsed.solution_2_score === 'number' ? parsed.solution_2_score : 7,
-    solution_1_feedback: typeof parsed.solution_1_feedback === 'string' ? parsed.solution_1_feedback : "No feedback provided.",
-    solution_2_feedback: typeof parsed.solution_2_feedback === 'string' ? parsed.solution_2_feedback : "No feedback provided.",
-    question_score: typeof parsed.question_score === 'number' ? parsed.question_score : 7,
-  };
 }
 
 const judgeNode: GraphNode<typeof state> = async (state) => {

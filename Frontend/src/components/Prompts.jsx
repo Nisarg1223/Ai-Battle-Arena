@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Prompts.css';
+import { API_BASE_URL } from '../config.js';
 
 const Prompts = ({ setView: propSetView }) => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Prompts = ({ setView: propSetView }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://ai-battle-arena-mr6l.onrender.com/api/prompts?page=${currentPage}&limit=5`)
+    fetch(`${API_BASE_URL}/api/prompts?page=${currentPage}&limit=5`)
       .then(res => res.json())
       .then(data => {
         if (data.prompts && data.prompts.length > 0) {

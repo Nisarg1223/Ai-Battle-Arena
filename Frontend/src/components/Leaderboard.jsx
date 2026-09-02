@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Leaderboard.css';
+import { API_BASE_URL } from '../config.js';
 
 const Leaderboard = ({ setView: propSetView, MODELS_LIST }) => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Leaderboard = ({ setView: propSetView, MODELS_LIST }) => {
   // Fetch dynamic leaderboard data on mount
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://ai-battle-arena-mr6l.onrender.com/api/leaderboard')
+    fetch(`${API_BASE_URL}/api/leaderboard`)
       .then(res => res.json())
       .then(data => {
         if (data.standings && data.standings.length > 0) {

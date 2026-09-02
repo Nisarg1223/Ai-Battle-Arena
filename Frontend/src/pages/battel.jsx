@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import { API_BASE_URL } from '../config.js';
 
 // Predefined model list matching the sidebar with custom SVG logos
 const MODELS_LIST = [
@@ -425,7 +426,7 @@ const Battel = () => {
     setSelectedNodeId('judge'); // Focus on Judge to see results
 
     try {
-      const response = await fetch('https://ai-battle-arena-mr6l.onrender.com/api/battle', {
+      const response = await fetch(`${API_BASE_URL}/api/battle`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
