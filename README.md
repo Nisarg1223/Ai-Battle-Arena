@@ -8,8 +8,11 @@
 
 An interactive AI competition platform where multiple LLMs battle using the same challenges. Compare their responses, explore different AI capabilities, and discover which model delivers the best answer.
 
-[🚀 Explore Repository](https://github.com/Nisarg1223/Ai-Battle-Arena) · [🐛 Report Bug](https://github.com/Nisarg1223/Ai-Battle-Arena/issues)
 
+
+<img width="566" height="316" alt="image" src="https://github.com/user-attachments/assets/47ea6ee3-4f45-4bd7-bc8d-37e20a7c1880" />
+
+[🚀 Explore Repository](https://github.com/Nisarg1223/Ai-Battle-Arena) · [🐛 Report Bug](https://github.com/Nisarg1223/Ai-Battle-Arena/issues)
 </div>
 
 ---
